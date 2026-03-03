@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Scenario List Page
+{% endblock %}
+
+{% block extra_head %}
+    <meta name="description" content="This is the hero list page.">
+{% endblock %}
+
+{% block content %}
+    {% if hero_list %}
+    <div class="overflow-hidden w-full overflow-x-auto rounded-sm border border-neutral-300 dark:border-neutral-700">
+    <table class="w-full text-left text-sm text-neutral-600 dark:text-neutral-300">
+        <thead class="border-b border-neutral-300 bg-neutral-50 text-sm text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white">
+            <tr>
+                <th scope="col" class="p-4">Name</th>
+                <th scope="col" class="p-4">Description</th>
+                <th scope="col" class="p-4">History</th>
+                <th scope="col" class="p-4">Age</th>
+                <th scope="col" class="p-4">Gender</th>
+                <th scope="col" class="p-4">Race</th>
+                <th scope="col" class="p-4">Specialization</th>
+                <th scope="col" class="p-4">Health</th>
+                <th scope="col" class="p-4">Mana</th>
+                <th scope="col" class="p-4">State</th>
+                <th scope="col" class="p-4">Scenario</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-neutral-300 dark:divide-neutral-700">
+        {% for hero in hero_list %}
+                <tr>
+                    <td class="p-4">{{ hero.name }}</td>
+                    <td class="p-4">{{ hero.description }}</td>
+                    <td class="p-4">{{ hero.history }}</td>
+                    <td class="p-4">{{ hero.age }}</td>
+                    <td class="p-4">{{ hero.gender.name }}</td>
+                    <td class="p-4">{{ hero.race.name }}</td>
+                    <td class="p-4">{{ hero.specialization }}</td>
+                    <td class="p-4">{{ hero.health }}</td>
+                    <td class="p-4">{{ hero.mana }}</td>
+                    <td class="p-4">{{ hero.state.name }}</td>
+                    <td class="p-4">{{ hero.scenario.name }}</td>
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+   </div>
+    {% else %}
+        <p>No heroes found.</p>
+    {% endif %}
+{% endblock %}
