@@ -1,4 +1,3 @@
-<!-- templates/index.html -->
 {% extends "base.html" %}
 
 {% block title %}
@@ -6,13 +5,10 @@
 {% endblock %}
 
 {% block extra_head %}
-    <!-- Add page-specific meta tags, CSS, or JS here -->
     <meta name="description" content="This is the home page.">
 {% endblock %}
 
 {% block content %}
     <h2>This is the main content of the home page.</h2>
     <p>It replaces the default 'content' block in the base template.</p>
-    <p><b>{{ request.get_full_path }}</b></p>
-    <p><b>{{ request.path }}</b></p>
 {% endblock %}

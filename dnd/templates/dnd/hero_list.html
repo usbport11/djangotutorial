@@ -30,7 +30,7 @@
         <tbody class="divide-y divide-neutral-300 dark:divide-neutral-700">
         {% for hero in hero_list %}
                 <tr>
-                    <td class="p-4">{{ hero.name }}</td>
+                    <td class="p-4"><a href="{% url 'dnd:hero-detail' hero.id %}" class="font-medium text-fg-brand underline hover:no-underline">{{ hero.name }}</td>
                     <td class="p-4">{{ hero.description }}</td>
                     <td class="p-4">{{ hero.history }}</td>
                     <td class="p-4">{{ hero.age }}</td>

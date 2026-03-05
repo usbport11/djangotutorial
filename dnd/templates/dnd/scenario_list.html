@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-    {% if scenario_list %}
+    {% if object_list %}
     <div class="overflow-hidden w-full overflow-x-auto rounded-sm border border-neutral-300 dark:border-neutral-700">
     <table class="w-full text-left text-sm text-neutral-600 dark:text-neutral-300">
         <thead class="border-b border-neutral-300 bg-neutral-50 text-sm text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white">
@@ -19,9 +19,9 @@
             </tr>
         </thead>
         <tbody class="divide-y divide-neutral-300 dark:divide-neutral-700">
-        {% for scenario in scenario_list %}
+        {% for scenario in object_list %}
                 <tr>
-                    <td class="p-4">{{ scenario.name }}</td>
+                    <td class="p-4"><a href="{% url 'dnd:scenario-detail' scenario.id %}" class="font-medium text-fg-brand underline hover:no-underline">{{ scenario.name }}</a></td>
                     <td class="p-4">{{ scenario.description }}</td>
                 </tr>
         {% endfor %}
