@@ -15,5 +15,5 @@ urlpatterns = [
   path("scenario/<int:pk>/", views.ScenarioDetailView.as_view(), name="scenario-detail"),
   path("scenario/add", views.ScenarioCreateView.as_view(), name="scenario-create"),
   path("scenario/<int:pk>/del", views.ScenarioDeleteView.as_view(), name="scenario-delete"),
-  path("scenario/<int:pk>/upd", views.ScenarioCreateView.as_view(), name="scenario-update"),
+  path("scenario/<int:pk>/upd", views.ScenarioUpdateView.as_view(), name="scenario-update"),
 ]

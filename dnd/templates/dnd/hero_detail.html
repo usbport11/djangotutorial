@@ -1,12 +1,44 @@
-<h1>{{ object.name }}</h1>
-<p>{{ object.description }}</p>
-<p>{{ object.history }}</p>
-<p>{{ object.level }}<p>
-<p>{{ object.age }}<p>
-<p>{{ object.gender.name }}<p>
-<p>{{ object.race.name }}<p>
-<p>{{ object.specialization.name }}<p>
-<p>{{ object.health }}<p>
-<p>{{ object.mana }}<p>
-<p>{{ object.state.name }}<p>
-<p>{{ object.scenario.name }}<p>
+{% extends "base.html" %}
+
+{% block title %}
+    Scenario Detail Page
+{% endblock %}
+
+{% block extra_head %}
+    <meta name="description" content="This is the hero detail page.">
+{% endblock %}
+
+{% block content %}
+    <header class="bg-white shadow">
+    <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <h1 class="text-2xl font-bold text-gray-900">Hero Detail</h1>
+    </div>
+    </header>
+
+    <div class="overflow-hidden w-full overflow-x-auto rounded-sm border border-neutral-300 dark:border-neutral-700">
+    <table class="w-full text-left text-sm text-neutral-600 dark:text-neutral-300">
+        <thead class="border-b border-neutral-300 bg-neutral-50 text-sm text-neutral-900 dark:border-neutral-700
+                dark:bg-neutral-900 dark:text-white">
+            <tr>
+                <th scope="col" class="p-4">Property</th>
+                <th scope="col" class="p-4">Value</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-neutral-300 dark:divide-neutral-700">
+                <tr><td class="p-4"><b>Name<b></td><td class="p-4">{{ object.name }}</td></tr>
+                <tr><td class="p-4"><b>Description</b></td><td class="p-4">{{ object.description }}</td></tr>
+		<tr><td class="p-4"><b>History<b></td><td class="p-4">{{ object.history }}</td></tr>
+		<tr><td class="p-4"><b>Age<b></td><td class="p-4">{{ object.age }}</td></tr>
+                <tr><td class="p-4"><b>Gender</b></td><td class="p-4">{{ object.gender.name }}</td></tr>
+		<tr><td class="p-4"><b>Race<b></td><td class="p-4">{{ object.race }}</td></tr>
+                <tr><td class="p-4"><b>Specialization</b></td><td class="p-4">{{ object.specialization.name }}</td></tr>
+		<tr><td class="p-4"><b>Health<b></td><td class="p-4">{{ object.health }}</td></tr>
+                <tr><td class="p-4"><b>Mana</b></td><td class="p-4">{{ object.mana }}</td></tr>
+		<tr><td class="p-4"><b>State<b></td><td class="p-4">{{ object.state.name }}</td></tr>
+                <tr><td class="p-4"><b>Scenario</b></td><td class="p-4">{{ object.scenario.name }}</td></tr>
+        </tbody>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

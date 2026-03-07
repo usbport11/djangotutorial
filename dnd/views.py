@@ -22,20 +22,18 @@ class ScenarioDetailView(DetailView):
 
 class ScenarioListView(ListView):
     model = Scenario
-    paginate_by = 100
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
 
-class ScenarioFormView(FormView):
-    template_name = "scenario.html"
-    form_class = ScenarioForm
-    def form_valid(self, form):
-        return super().form_valid(form)
-
 class ScenarioCreateView(CreateView):
+    form_class = ScenarioForm
     model = Scenario
-    fields = ["name", "description"]
+
+class ScenarioUpdateView(UpdateView):
+    form_class = ScenarioForm
+    model = Scenario
+    template_name = "dnd/scenario_form.html"
 
 class ScenarioDeleteView(DeleteView):
     model = Scenario
@@ -49,20 +47,18 @@ class HeroDetailView(DetailView):
 
 class HeroListView(ListView):
     model = Hero
-    paginate_by = 100
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
 
-class HeroFormView(FormView):
-    template_name = "hero.html"
-    form_class = HeroForm
-    def form_valid(self, form):
-        return super().form_valid(form)
-
 class HeroCreateView(CreateView):
+    form_class = HeroForm
     model = Hero
-    fields = ["name", "description", "history", "age", "gender", "race", "specialization", "health", "mana", "state", "scenario"]
+
+class HeroUpdateView(UpdateView):
+    form_class = HeroForm
+    model = Hero
+    template_name = "dnd/hero_form.html"
 
 class HeroDeleteView(DeleteView):
     model = Hero
