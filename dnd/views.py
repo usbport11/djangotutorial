@@ -10,9 +10,9 @@ from .models import Scenario, Hero
 from .forms import ScenarioForm, HeroForm
 
 class MainIndexView(ListView):
-  template_name = "dnd/index.html"
-  def get_queryset(self):
-    return None
+    template_name = "dnd/index.html"
+    def get_queryset(self):
+        return None
 
 class ScenarioDetailView(DetailView):
     model = Scenario
@@ -37,7 +37,7 @@ class ScenarioUpdateView(UpdateView):
 
 class ScenarioDeleteView(DeleteView):
     model = Scenario
-    success_url = reverse_lazy("scenario-list")
+    success_url = reverse_lazy("dnd:scenario-list")
 
 class HeroDetailView(DetailView):
     model = Hero

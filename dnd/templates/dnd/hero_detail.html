@@ -35,7 +35,7 @@
 		<tr><td class="p-4"><b>Health<b></td><td class="p-4">{{ object.health }}</td></tr>
                 <tr><td class="p-4"><b>Mana</b></td><td class="p-4">{{ object.mana }}</td></tr>
 		<tr><td class="p-4"><b>State<b></td><td class="p-4">{{ object.state.name }}</td></tr>
-                <tr><td class="p-4"><b>Scenario</b></td><td class="p-4">{{ object.scenario.name }}</td></tr>
+                <tr><td class="p-4"><b>Scenario</b></td><td class="p-4"><a href="{% url 'dnd:scenario-detail' hero.scenario.id %}" class="font-medium text-fg-brand underline hover:no-underline">{{ object.scenario.name }}<a></td></tr>
         </tbody>
         </tbody>
     </table>

@@ -1,4 +1,4 @@
-import datetime
+from django.urls import reverse
 from django.db import models
 from django.utils import timezone
 from django.forms import ModelForm
@@ -6,10 +6,17 @@ from django.forms import ModelForm
 class Scenario(models.Model):
   name = models.CharField(max_length=64)
   description = models.CharField(max_length=256)
+  #place = models.ForeignKey(Status, on_delete=models.CASCADE)
+  #comment = models.TextField()
   def __str__(self):
     return self.name
   def get_absolute_url(self):
-        return reverse("scenario-detail", kwargs={"pk": self.pk})
+    return reverse("dnd:scenario-detail", kwargs={"pk": self.pk})
+
+class Status(models.Model):
+  name = models.CharField(max_length=64) #new, scetch, paused, closed, canceled, abandoned, other
+  def __str__(self):
+    return self.name
 
 class Map(models.Model):
   name = models.CharField(max_length=64)
@@ -68,9 +75,8 @@ class Hero(models.Model):
   def __str__(self):
     return self.name
   def get_absolute_url(self):
-    return reverse('hero-detail', kwargs={'pk': self.pk})
+    return reverse('dnd:hero-detail', kwargs={'pk': self.pk})
 
-#new
 #class Inventory(models.Model):
 #  hero = models.ForeignKey(Hero, on_delete=models.CASCADE)
 

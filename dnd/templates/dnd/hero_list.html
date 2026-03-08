@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Scenario List Page
+    Hero List Page
 {% endblock %}
 
 {% block extra_head %}
@@ -9,6 +9,12 @@
 {% endblock %}
 
 {% block content %}
+    <header class="bg-white shadow">
+    <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <h1 class="text-2xl font-bold text-gray-900">Hero List</h1>
+    </div>
+    </header>
+
     {% if hero_list %}
     <div class="overflow-hidden w-full overflow-x-auto rounded-sm border border-neutral-300 dark:border-neutral-700">
     <table class="w-full text-left text-sm text-neutral-600 dark:text-neutral-300">
@@ -25,6 +31,7 @@
                 <th scope="col" class="p-4">Mana</th>
                 <th scope="col" class="p-4">State</th>
                 <th scope="col" class="p-4">Scenario</th>
+		<th scope="col" class="p-4">Actions</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-neutral-300 dark:divide-neutral-700">
@@ -40,7 +47,21 @@
                     <td class="p-4">{{ hero.health }}</td>
                     <td class="p-4">{{ hero.mana }}</td>
                     <td class="p-4">{{ hero.state.name }}</td>
-                    <td class="p-4">{{ hero.scenario.name }}</td>
+                    <td class="p-4"><a href="{% url 'dnd:scenario-detail' hero.scenario.id %}" class="font-medium text-fg-brand underline hover:no-underline">{{ hero.scenario.name }}</a></td>
+		    <td>
+                     <a href="{% url 'dnd:hero-delete' hero.id %}" class="inline-flex justify-center items-center gap-2 whitespace-nowrap rounded-sm bg-red-500 border border-red-500 dark:border-red-500 px-4 py-2 text-sm font-medium tracking-wide text-white transition hover:opacity-75 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-red-500 dark:text-white dark:focus-visible:outline-red-500">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                     <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                     </svg>
+                     </a>
+                     <a href="{% url 'dnd:hero-update' hero.id %}" class="inline-flex justify-center items-center gap-2 whitespace-nowrap rounded-sm bg-amber-500 border border-amber-500 dark:border-amber-500 px-4 py-2 text-sm font-medium tracking-wide text-white transition hover:opacity-75 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-amber-500 dark:text-white dark:focus-visible:outline-amber-500">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                      </svg>
+                     </a>
+                    </td>
                 </tr>
         {% endfor %}
         </tbody>
@@ -49,4 +70,15 @@
     {% else %}
         <p>No heroes found.</p>
     {% endif %}
+<header class="bg-white shadow">
+    <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
+	<a href="{% url 'dnd:hero-create' %}" class="inline-flex justify-center items-center gap-2 whitespace-nowrap rounded-sm bg-green-500 border border-green-500 dark:border-green-500 px-4 py-2 text-sm font-medium tracking-wide text-white transition hover:opacity-75 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-green-500 dark:text-white dark:focus-visible:outline-green-500">
+    	<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-5 fill-white dark:fill-white" fill="currentColor">
+        <path fill-rule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+    	</svg>
+    	Create
+	</a>
+    </div>
+</header>
+
 {% endblock %}

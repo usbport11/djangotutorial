@@ -9,7 +9,7 @@ urlpatterns = [
   path("hero/<int:pk>/", views.HeroDetailView.as_view(), name="hero-detail"),
   path("hero/add", views.HeroCreateView.as_view(), name="hero-create"),
   path("hero/<int:pk>/del", views.HeroDeleteView.as_view(), name="hero-delete"),
-  path("hero/<int:pk>/upd", views.HeroCreateView.as_view(), name="hero-update"),
+  path("hero/<int:pk>/upd", views.HeroUpdateView.as_view(), name="hero-update"),
 
   path("scenario/", views.ScenarioListView.as_view(), name="scenario-list"),
   path("scenario/<int:pk>/", views.ScenarioDetailView.as_view(), name="scenario-detail"),
