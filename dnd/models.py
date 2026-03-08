@@ -6,7 +6,7 @@ from django.forms import ModelForm
 class Scenario(models.Model):
   name = models.CharField(max_length=64)
   description = models.CharField(max_length=256)
-  #place = models.ForeignKey(Status, on_delete=models.CASCADE)
+  #status = models.ForeignKey(Status, on_delete=models.CASCADE)
   #comment = models.TextField()
   def __str__(self):
     return self.name

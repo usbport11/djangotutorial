@@ -28,7 +28,7 @@
         </thead>
         <tbody class="divide-y divide-neutral-300 dark:divide-neutral-700">
         {% for scenario in object_list %}
-              <tr>
+              <tr class="even:bg-black/5 dark:even:bg-white/10">
                 <td class="p-4"><a href="{% url 'dnd:scenario-detail' scenario.id %}" class="font-medium text-fg-brand underline hover:no-underline">{{ scenario.name }}</a></td>
                 <td class="p-4">{{ scenario.description }}</td>
 		<td>

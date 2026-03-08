@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.views.generic import TemplateView
 
 app_name = "dnd"
 urlpatterns = [
@@ -16,4 +17,6 @@ urlpatterns = [
   path("scenario/add", views.ScenarioCreateView.as_view(), name="scenario-create"),
   path("scenario/<int:pk>/del", views.ScenarioDeleteView.as_view(), name="scenario-delete"),
   path("scenario/<int:pk>/upd", views.ScenarioUpdateView.as_view(), name="scenario-update"),
+
+  path('cuberoll', TemplateView.as_view(template_name='cuberoll.html'), name='cuberoll'),
 ]
