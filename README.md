@@ -31,3 +31,45 @@ git clone https://github.com/usbport11/djangotutorial
 cd djangotutorial
 python manage.py runserver
 </pre>
+
+#WS Apache
+<pre>
+&lt;VirtualHost *:80&gt;
+        ProxyPreserveHost On
+        &lt;Location /&gt;
+                ProxyPass http://127.0.0.1:8000/
+                ProxyPassReverse http://127.0.0.1:8000/
+        &lt;/Location&gt;
+        &lt;Location /chat/&gt;
+                ProxyPass http://127.0.0.1:8000/chat/
+                ProxyPassReverse http://127.0.0.1:8000/chat/
+                RewriteEngine On
+                RewriteCond %{HTTP:Connection} Upgrade [NC]
+                RewriteCond %{HTTP:Upgrade} websocket [NC]
+                RewriteRule /(.*) ws://127.0.0.1:8000/$1 [P,L]
+        &lt;/Location&gt;
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost>
+</pre>
+
+#WS Nginx
+<pre>
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        server_name _;
+        location / {
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_pass http://127.0.0.1:8000;
+        }
+        location /chat/ {
+                proxy_pass http://127.0.0.1:8000/chat/;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+        }
+}
+</pre>
