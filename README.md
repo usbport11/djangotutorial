@@ -89,7 +89,3 @@ server {
         }
 }
 </pre>
-
-pip install daphne
-pip install channels
-pip install channels_redis
