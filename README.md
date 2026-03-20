@@ -32,8 +32,24 @@ cd djangotutorial
 python manage.py runserver
 </pre>
 
+# Before start channels (/chat)
+<pre>
+apt install redis-server
+cd /opt/django
+rm -fr djangotutorial
+git clone https://github.com/usbport11/djangotutorial
+source bin/activate
+pip install -U 'channels[daphne]'
+pip install channels_redis
+cd djangotutorial
+python manage.py runserver
+</pre>
+
 # WS Apache
 <pre>
+a2enmod rewrite
+systemctl restart apache2
+
 &lt;VirtualHost *:80&gt;
         ProxyPreserveHost On
         &lt;Location /&gt;
@@ -73,3 +89,7 @@ server {
         }
 }
 </pre>
+
+pip install daphne
+pip install channels
+pip install channels_redis
