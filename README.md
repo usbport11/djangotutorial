@@ -32,7 +32,7 @@ cd djangotutorial
 python manage.py runserver
 </pre>
 
-#WS Apache
+# WS Apache
 <pre>
 &lt;VirtualHost *:80&gt;
         ProxyPreserveHost On
@@ -54,7 +54,7 @@ python manage.py runserver
 &lt;/VirtualHost>
 </pre>
 
-#WS Nginx
+# WS Nginx
 <pre>
 server {
         listen 80 default_server;

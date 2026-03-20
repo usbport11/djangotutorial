@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 from .models import Gender, Race, Specialization, State, Scenario, Hero
 
 class_input = """
@@ -39,3 +40,13 @@ class HeroForm(forms.ModelForm):
             'health': forms.TextInput(attrs={'class':class_input}),
             'mana': forms.TextInput(attrs={'class':class_input}),
         }
+
+class MainAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(
+        label="Username",
+        widget=forms.TextInput(attrs={'class': class_input, 'placeholder': 'Username'})
+    )
+    password = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(attrs={'class': class_input, 'placeholder': 'Password'})
+    )

@@ -1,18 +1,29 @@
-from django.shortcuts import get_object_or_404, render
-from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse_lazy, reverse
+from django.contrib.auth import logout
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from django.views.generic.edit import FormView
-from django.views.generic.edit import CreateView
-from django.views.generic.edit import UpdateView
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Scenario, Hero
-from .forms import ScenarioForm, HeroForm
+from .forms import ScenarioForm, HeroForm, MainAuthenticationForm
+from django.contrib.auth.views import LoginView, LogoutView
 
 class MainIndexView(ListView):
     template_name = "dnd/index.html"
     def get_queryset(self):
         return None
+
+class MainLoginView(LoginView):
+    authentication_form = MainAuthenticationForm
+    template_name = 'login.html'
+
+def MainLogoutView(request):
+    logout(request)
+    return redirect(reverse('dnd:index'))
+
+#def MainLogoutView(LogoutView):
+#    next_page = 'dnd:index'
 
 class ScenarioDetailView(DetailView):
     model = Scenario
@@ -20,7 +31,9 @@ class ScenarioDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         return context
 
-class ScenarioListView(ListView):
+class ScenarioListView(LoginRequiredMixin, ListView):
+    login_url = '/dnd/login/'
+    redirect_field_name = 'redirect_to'
     model = Scenario
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
